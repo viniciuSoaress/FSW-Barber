@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <main
-      className="flex min-h-screen flex-col p-1 gap-2"
+      className="flex min-h-screen flex-col p-1 gap-2 border-x"
     >
       <Header />
 
@@ -33,8 +33,17 @@ export default async function Home() {
       </section>
 
       <section className='px-5 mt-6 text-gray-400'>
+        <h2 className='text-xs uppercase mb-3 font-bold'>Populares</h2>
+        <div className=' flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:opacity-25'>
+          {barbersShops.map((barberShop: Barbershop) => (
+            <BarberShopItem barberShop={barberShop} key={barberShop.id} />
+          ))}
+        </div>
+      </section>
+
+      <section className='px-5 mt-6 text-gray-400'>
         <h2 className='text-xs uppercase mb-3 font-bold'>Recomendados</h2>
-        <div className=' flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
+        <div className=' flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:opacity-25'>
           {barbersShops.map((barberShop: Barbershop) => (
             <BarberShopItem barberShop={barberShop} key={barberShop.id} />
           ))}
