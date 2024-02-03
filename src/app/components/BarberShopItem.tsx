@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Barbershop } from "@prisma/client";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
@@ -29,7 +31,11 @@ export function BarberShopItem({ barberShop }: BarberShopItemProps) {
         <div className="p-3 pt-0">
           <h2 className="font-bold  overflow-hidden text-ellipsis text-nowrap">{barberShop.name}</h2>
           <p className="text-sm text-gray-400 overflow-hidden text-ellipsis text-nowrap">{barberShop.address}</p>
-          <Button variant='secondary' className="w-full">Reservar</Button>
+          <Button variant='secondary' className="w-full">
+            <Link href={`barberShops/${barberShop.id}`}>
+            Reservar
+            </Link>
+            </Button>
         </div>
       </CardContent>
     </Card>
