@@ -11,7 +11,7 @@ export function Header() {
       <CardContent className="p-5 flex justify-between items-center">
         <Image
           alt="logo"
-          src='/logo.png'
+          src='/logo.jpg'
           width={120}
           height={22}
         />
