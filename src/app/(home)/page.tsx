@@ -19,7 +19,7 @@ export default async function Home() {
       <Header />
 
       <section className='p-5'>
-        <h2 className='text-xl font-bold'>Òla, Vinicius!</h2>
+        <h2 className='text-xl font-bold'>Olà, Vinicius!</h2>
         <p className='capitalize text-sm'>{format(new Date(), "EE, dd 'de'  MMMM", { locale: ptBR })}</p>
       </section>
 

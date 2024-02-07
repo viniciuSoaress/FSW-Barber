@@ -1,5 +1,7 @@
 import { ServiceIcom } from '@/app/components/ServiceIcon'
+import { SideMenu } from '@/app/components/siderMenu'
 import { Button } from '@/app/components/ui/button'
+import { Sheet, SheetTrigger } from '@/app/components/ui/sheet'
 import db from '@/app/lib/prisma'
 import { Service } from '@prisma/client'
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from 'lucide-react'
@@ -25,17 +27,27 @@ export default async function BarberShopDetailsPage({ params }: Props) {
 
   return (
     <main
-    className="flex min-h-screen flex-col p-1 gap-2 border-x"
-  >
+      className="flex min-h-screen flex-col p-1 gap-2 border-x"
+    >
       <div className="h-[250px] w-full relative">
         <Button size='icon' variant='outline' className='absolute z-50 top-4 left-4'>
           <Link href='/'>
             <ChevronLeftIcon />
           </Link>
         </Button>
-        <Button size='icon' variant='outline' className='absolute z-50 top-4 right-4'>
-          <MenuIcon />
-        </Button>
+
+
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size='icon' variant='outline' className='absolute z-50 top-4 right-4'>
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+
+          <SideMenu />
+
+        </Sheet>
         <Image
           src={barberShop.imageUrl}
           alt={barberShop.name}

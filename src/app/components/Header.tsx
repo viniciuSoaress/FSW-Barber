@@ -1,14 +1,30 @@
+'use client'
 
+import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { MenuIcon } from "lucide-react";
-
+import { CalendarIcon, HomeIcon, LogInIcon, LogOutIcon, MenuIcon, UserIcon } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Avatar, AvatarImage } from "./ui/avatar";
+import { SideMenu } from "./siderMenu";
 
 
 export function Header() {
 
-  
+  const { data } = useSession()
+
+
+  function handleLogoutClick() {
+    signOut()
+  }
+
+  function handleLoginClick() {
+    signIn('google')
+  }
+
+
   return (
     <Card>
       <CardContent className="p-5 flex justify-between items-center">
@@ -18,9 +34,16 @@ export function Header() {
           width={120}
           height={22}
         />
-        <Button variant='outline' size='icon'>
-          <MenuIcon />
-        </Button>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant='outline' size='icon'>
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+
+          <SideMenu />
+
+        </Sheet>
       </CardContent>
     </Card>
   )
