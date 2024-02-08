@@ -1,14 +1,25 @@
+'use client'
+
 import { Service } from "@prisma/client"
 import { Card, CardContent } from "./ui/card"
 import Image from "next/image"
 import { Button } from "./ui/button"
+import { signIn } from "next-auth/react"
 
 
 type Props = {
-  service: Service
+  service: Service,
+  isAuthDessabled: boolean
 }
 
-export function ServiceIcom({ service }: Props) {
+export function ServiceIcom({ service, isAuthDessabled }: Props) {
+
+
+  function handleBookClick(){
+    if(!isAuthDessabled){
+      return signIn('google')
+    }
+  }
 
   return (
     <Card>
@@ -26,7 +37,7 @@ export function ServiceIcom({ service }: Props) {
               style: 'currency',
               currency: 'BRL'
             }).format(service.price)}</p>
-            <Button variant='secondary'>Reservar</Button>
+            <Button variant='secondary' onClick={handleBookClick}>Reservar</Button>
           </div>
 
         </div>

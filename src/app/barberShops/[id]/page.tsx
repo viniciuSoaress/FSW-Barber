@@ -1,3 +1,4 @@
+import { authOption } from '@/app/api/auth/[...nextauth]/route'
 import { ServiceIcom } from '@/app/components/ServiceIcon'
 import { SideMenu } from '@/app/components/siderMenu'
 import { Button } from '@/app/components/ui/button'
@@ -5,6 +6,7 @@ import { Sheet, SheetTrigger } from '@/app/components/ui/sheet'
 import db from '@/app/lib/prisma'
 import { Service } from '@prisma/client'
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from 'lucide-react'
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -15,6 +17,8 @@ type Props = {
 }
 
 export default async function BarberShopDetailsPage({ params }: Props) {
+
+  const sesion =await getServerSession(authOption)
 
   const barberShop = await db.barbershop.findFirst({
     where: {
@@ -73,7 +77,7 @@ export default async function BarberShopDetailsPage({ params }: Props) {
 
       <div className='px-5 flex flex-col gap-4'>
         {barberShop.services.map((service: Service) => (
-          <ServiceIcom service={service} key={service.id} />
+          <ServiceIcom service={service} key={service.id} isAuthDessabled={!!sesion?.user} />
         ))}
       </div>
     </main>
