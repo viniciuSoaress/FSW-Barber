@@ -77,7 +77,7 @@ export default async function BarberShopDetailsPage({ params }: Props) {
 
       <div className='px-5 flex flex-col gap-4'>
         {barberShop.services.map((service: Service) => (
-          <ServiceIcom service={service} key={service.id} isAuthDessabled={!!sesion?.user} />
+          <ServiceIcom service={service}barberShop={barberShop} key={service.id} isAuthDessabled={!!sesion?.user} />
         ))}
       </div>
     </main>
